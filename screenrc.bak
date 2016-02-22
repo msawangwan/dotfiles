@@ -1,0 +1,50 @@
+# ------------------------------------------
+# config file for the 'screen' window manager
+# -------------------------------------------
+
+# welcome message
+startup_message off
+
+# enable custom  caption bar
+caption always "%= %-w%{= BW}%n*%t%{-}%+w %L="
+
+# enable custom 'hardstatus' bar
+hardstatus alwayslastline "%= %3n %t%? [%h]%? %="
+
+# set scrollback buffer
+defscrollback 5000
+
+# window settings
+shelltitle "Shell"
+
+# window bindings
+bind c screen 1 # start at 1
+bind 0 select 10 # 0 = 10
+
+# default windows on start
+screen -t Shell  1 bash
+screen -t Shell  2 bash
+screen -t Shell  3 bash
+screen -t Shell  4 bash
+screen -t Python 10 python
+
+# default window in focus
+select 1
+
+# define layout(s)
+layout new 'main'
+layout new 'horizontal'
+select 1
+split
+focus down
+resize -20%
+select 2
+focus up
+
+# set starting layout - main is default
+layout select 'main'
+
+# layout bindings (uses Fn keys)
+bindkey "^[[11~" layout select 'main'
+bindkey "^[[12~" layout select 'horizontal'
+

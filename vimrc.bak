@@ -1,0 +1,97 @@
+" ---------------------------------------------------
+"     vim vundle - bundle/plugin manager settings
+" ---------------------------------------------------
+"
+set nocompatible " required
+filetype off " required
+" set runtime path to include vundle and re-initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+"
+" start plugin defs here ...
+call vundle#begin()
+
+" required, vundle manages itself
+Plugin 'VundleVim/Vundle.vim'
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+" youcompleteme
+Plugin 'Valloric/YouCompleteMe'
+" vim-javascript
+Plugin 'pangloss/vim-javascript'
+" surround
+Plugin 'tpope/vim-surround'
+" tern-for-vim
+"Plugin 'marijnh/tern_for_vim'
+
+"
+" ... end plugin defs here
+call vundle#end()
+filetype plugin indent on " required
+
+
+"
+" ----------------------------------------------------
+"		settings to make a ide-like editor
+" ----------------------------------------------------
+"
+" enable syntax highlighting
+syntax on " can also be enable
+" show line numbers
+set number
+" lines longer than 79 columns will break to next line
+set textwidth=79
+" set tabs to 4 spaces
+set ts=4
+" indent when moving to the next line while writing code
+set autoindent
+" expand tabs into spaces
+set expandtab
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
+" round indent to multiple of 'shiftwidth'
+set shiftround
+" show a visual line under the cursor's current line
+set cursorline
+" show the opening/closing pairs of [] () {}
+set showmatch
+" enable folding 
+set foldmethod=indent
+set foldlevel=99
+" folding key-bind
+nnoremap <space> za
+" flag extra whitespace
+" au BufRead.BufNewFile *.py, *.c, *.h match BadWhitespace /\s\+$/
+" set encoding
+set encoding=utf-8
+" enable all Python syntax highlighting features
+let python_highlight_all=1
+"
+"
+" --------------------------------------------------
+"                 vim-javascript
+" --------------------------------------------------
+" enable html/css syntax highlighting
+let javascript_enable_domhtmlcss=0
+" enable JS code folding
+let b:javascript_fold=0
+" JSDoc ignore syntax highlighting
+let javascript_ignore_javaScriptdoc=0
+"
+"
+" --------------------------------------------------
+"                 youcompleteme
+" --------------------------------------------------
+" close autocomplete window when done using
+let g:ycm_autoclose_preview_window_after_completion=1
+"
+"
+" --------------------------------------------------
+"                   nerdtree
+" --------------------------------------------------
+" auto-start
+autocmd vimenter * NERDTree
+" resize file browser width
+let g:NERDTreeWinSize=18
+
+
+
