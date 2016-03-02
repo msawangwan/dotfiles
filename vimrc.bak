@@ -1,97 +1,116 @@
+"
 " ---------------------------------------------------
-"     vim vundle - bundle/plugin manager settings
+"              vim-plug (plugin manager)
 " ---------------------------------------------------
 "
-set nocompatible " required
-filetype off " required
-" set runtime path to include vundle and re-initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-"
-" start plugin defs here ...
-call vundle#begin()
+" plugins must be listed between plug#begin
+" and plug#end - the path is passed into begin
 
-" required, vundle manages itself
-Plugin 'VundleVim/Vundle.vim'
-" nerdtree
-Plugin 'scrooloose/nerdtree'
-" youcompleteme
-Plugin 'Valloric/YouCompleteMe'
-" vim-javascript
-Plugin 'pangloss/vim-javascript'
-" surround
-Plugin 'tpope/vim-surround'
-" tern-for-vim
-"Plugin 'marijnh/tern_for_vim'
-
-"
-" ... end plugin defs here
-call vundle#end()
-filetype plugin indent on " required
-
+call plug#begin('~/.vim/bundle/')    " start plugin section  here ...
+Plug 'scrooloose/nerdtree'           " nerdtree
+Plug 'Valloric/YouCompleteMe',       " youcompleteme
+Plug 'pangloss/vim-javascript'       " vim-javascript
+Plug 'moll/vim-node'                 " vim-node
+Plug 'fatih/vim-go'                  " vim-go
+call plug#end()                      " ... end plugin section  here
 
 "
 " ----------------------------------------------------
-"		settings to make a ide-like editor
+"                vim general settings
 " ----------------------------------------------------
+
+colorscheme koehler            " color scheme
+syntax enable                  " enable syntax highlighting
+set encoding=utf-8             " set encoding
+set fileencoding=utf-8         " filetype encoding
+set number                     " show line numbers
+set ruler                      " show ruler
+set wildmenu                   " enable wildmenu (autocomplete cmds)
+set wildmode=list:longest,full " wildmenu settings
+set ch=2                       " cmdheight
+set report=0                   " always report msg
+set showmode                   " show mode
+set showcmd                    " show partially typed commands
+set textwidth=80               " lines longer than 79 columns will break to next line
+set ts=4                       " set tabs to 4 spaces
+set autoindent                 " indent when moving to the next line while writing code
+set smartindent                " be smart about it
+set expandtab                  " expand tabs into spaces
+set shiftwidth=4               " when using the >> or << commands, shift lines by 4 spaces
+set shiftround                 " round indent to multiple of 'shiftwidth'
+set cursorline                 " show a visual line under the cursor's current line
+set scrolloff=5                " always show at least 5 lines
+set showmatch                  " show the opening/closing pairs of [] () {}
+set foldmethod=indent          " enable folding
+set foldlevel=99               " readup on this setting
+set hlsearch                   " highlight all words matched by search
+set incsearch                  " search as word is typed
+set ignorecase                 " ignore case during search
+let python_highlight_all=1     " enable all Python syntax highlighting features
+
+" shows whitespace trail
+set list listchars=trail:.,tab:>.
+" force colors for some things
+highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+highlight statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15 
+
 "
-" enable syntax highlighting
-syntax on " can also be enable
-" show line numbers
-set number
-" lines longer than 79 columns will break to next line
-set textwidth=79
-" set tabs to 4 spaces
-set ts=4
-" indent when moving to the next line while writing code
-set autoindent
-" expand tabs into spaces
-set expandtab
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
-" round indent to multiple of 'shiftwidth'
-set shiftround
-" show a visual line under the cursor's current line
-set cursorline
-" show the opening/closing pairs of [] () {}
-set showmatch
-" enable folding 
-set foldmethod=indent
-set foldlevel=99
-" folding key-bind
+" -------------------------------------------------
+"                   key-bindings
+" -------------------------------------------------
+" bind '=' to disable search highlight when done searching
+" and rebind 'za' (toggle fold) to 'space'
+
+nnoremap = :nohlsearch <return><esc>
 nnoremap <space> za
-" flag extra whitespace
-" au BufRead.BufNewFile *.py, *.c, *.h match BadWhitespace /\s\+$/
-" set encoding
-set encoding=utf-8
-" enable all Python syntax highlighting features
-let python_highlight_all=1
+
 "
+" --------------------------------------------------
+"                language specific
+" --------------------------------------------------
+
+autocmd Filetype sh,bash setlocal ts=4 sts=4 sw=4 tw=120 expandtab
+autocmd Filetype html setlocal ts=2 sts=2 sw=2 tw=100 expandtab
+autocmd Filetype python,go,cpp,java setlocal ts=4 sts=4 sw=4 tw=80 expandtab
+autocmd Filetype javascript,css,json setlocal ts=2 sts=2 sw=2 tw=80 expandtab
+
 "
 " --------------------------------------------------
 "                 vim-javascript
 " --------------------------------------------------
-" enable html/css syntax highlighting
-let javascript_enable_domhtmlcss=0
-" enable JS code folding
-let b:javascript_fold=0
-" JSDoc ignore syntax highlighting
-let javascript_ignore_javaScriptdoc=0
-"
+
+let javascript_enable_domhtmlcss=0                    " enable html/css syntax highlighting
+
 "
 " --------------------------------------------------
 "                 youcompleteme
 " --------------------------------------------------
-" close autocomplete window when done using
-let g:ycm_autoclose_preview_window_after_completion=1
-"
+
+let g:ycm_autoclose_preview_window_after_completion=1 " close autocomplete window when done using
+let g:ycm_min_num_of_chars_for_completion=1           " number of characters before menu appears
+
 "
 " --------------------------------------------------
 "                   nerdtree
 " --------------------------------------------------
-" auto-start
-autocmd vimenter * NERDTree
-" resize file browser width
-let g:NERDTreeWinSize=18
+
+autocmd vimenter * NERDTree                           " doesn't open by default unless this is set?
+let g:NERDTreeWinSize=18                              " resize file browser width
+let g:NERDTreeDirArrows=0                             " required when using putty: allows nav of subdirs
+
+"
+" --------------------------------------------------
+"                    vim-go
+" --------------------------------------------------
+" most of the syntax highlighting is turned off by
+" default, so turn it on
+
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_highlight_operators=1
+let g:go_highlight_build_constraints=1
+
 
 
 

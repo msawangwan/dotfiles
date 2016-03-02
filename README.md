@@ -9,5 +9,5 @@ dotfiles i'm currently using on my ubuntu server.
 *feel free to use and edit to your liking.*
 
 **current dotfiles**
-- screen (apt-get screen)
-- vim (includes some plugins)
+- screen (apt-get install  screen)
+- vim (includes plugin settings, managed by 'vim-plug')
