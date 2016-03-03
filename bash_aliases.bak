@@ -1,2 +1,4 @@
 alias l='ls; pwd'          # short list and print working dir
 alias ll='ls -a -l; pwd'   # detailed list and print working dir
+alias rmi='rm -i'          # safe delete - confirm before deletion
+alias today='date +"%A, %B %-d, %Y"'
