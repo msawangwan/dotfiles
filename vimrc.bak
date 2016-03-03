@@ -12,6 +12,7 @@ Plug 'Valloric/YouCompleteMe',       " youcompleteme
 Plug 'pangloss/vim-javascript'       " vim-javascript
 Plug 'moll/vim-node'                 " vim-node
 Plug 'fatih/vim-go'                  " vim-go
+Plug 'flazz/vim-colorschemes'        " vim-colorschemes
 call plug#end()                      " ... end plugin section  here
 
 "
@@ -19,7 +20,8 @@ call plug#end()                      " ... end plugin section  here
 "                vim general settings
 " ----------------------------------------------------
 
-colorscheme koehler            " color scheme
+set t_Co=256                   " enable 256 colors
+colorscheme brogrammer         " color scheme
 syntax enable                  " enable syntax highlighting
 set encoding=utf-8             " set encoding
 set fileencoding=utf-8         " filetype encoding
