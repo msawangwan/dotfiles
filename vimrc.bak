@@ -21,7 +21,7 @@ call plug#end()                      " ... end plugin section  here
 " ----------------------------------------------------
 
 set t_Co=256                   " enable 256 colors
-colorscheme brogrammer         " color scheme
+colorscheme skittles_berry     " color scheme
 syntax enable                  " enable syntax highlighting
 set encoding=utf-8             " set encoding
 set fileencoding=utf-8         " filetype encoding
@@ -37,7 +37,7 @@ set textwidth=80               " lines longer than 79 columns will break to next
 set ts=4                       " set tabs to 4 spaces
 set autoindent                 " indent when moving to the next line while writing code
 set smartindent                " be smart about it
-set expandtab                  " expand tabs into spaces
+set noexpandtab                " expand tabs into spaces
 set shiftwidth=4               " when using the >> or << commands, shift lines by 4 spaces
 set shiftround                 " round indent to multiple of 'shiftwidth'
 set cursorline                 " show a visual line under the cursor's current line
@@ -50,11 +50,11 @@ set incsearch                  " search as word is typed
 set ignorecase                 " ignore case during search
 let python_highlight_all=1     " enable all Python syntax highlighting features
 
-" shows whitespace trail
-set list listchars=trail:.,tab:>.
-" force colors for some things
-highlight SpecialKey ctermfg=DarkGray ctermbg=Black
-highlight statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15 
+" shows '.' char for whitespace and '|...' for tabs
+set list listchars=trail:.,tab:\|.
+" set colors for specialchars and statusline
+highlight SpecialKey ctermfg=white ctermbg=grey
+highlight statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 "
 " -------------------------------------------------
@@ -71,10 +71,10 @@ nnoremap <space> za
 "                language specific
 " --------------------------------------------------
 
-autocmd Filetype sh,bash setlocal ts=4 sts=4 sw=4 tw=120 expandtab
-autocmd Filetype html setlocal ts=2 sts=2 sw=2 tw=100 expandtab
-autocmd Filetype python,go,cpp,java setlocal ts=4 sts=4 sw=4 tw=80 expandtab
-autocmd Filetype javascript,css,json setlocal ts=2 sts=2 sw=2 tw=80 expandtab
+autocmd Filetype sh,bash setlocal ts=4 sts=4 sw=4 tw=120 noexpandtab
+autocmd Filetype html setlocal ts=2 sts=2 sw=2 tw=100 noexpandtab
+autocmd Filetype python,go,cpp,java setlocal ts=4 sts=4 sw=4 tw=80 noexpandtab
+autocmd Filetype javascript,css,json setlocal ts=2 sts=2 sw=2 tw=80 noexpandtab
 
 "
 " --------------------------------------------------
