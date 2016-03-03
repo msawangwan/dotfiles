@@ -1,0 +1,2 @@
+alias l='ls; pwd'          # short list and print working dir
+alias ll='ls -a -l; pwd'   # detailed list and print working dir
