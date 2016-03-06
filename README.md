@@ -1,13 +1,17 @@
 dotfile backups
 ===============
 
-github is an obvious choice when considering where
-to store small, yet invaluable files. in this repository
-you'll find a (growing) collection of many of the
-dotfiles i'm currently using on my ubuntu server.
+this repository hosts a small but growing
+collection of the dotfiles i'm currently 
+using on my ubuntu server. they're tedious
+to configure so having a central location
+to store back-up copies is a good idea --
+and who knows, maybe someone will find some
+useful information for themselves.
 
-*feel free to use and edit to your liking*
+*feel free to use these configs yourself*
 
 **current dotfiles**
 - screen (apt-get install  screen)
 - vim (includes plugin settings, managed by 'vim-plug')
+- bash alias commands
