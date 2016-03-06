@@ -1,13 +1,14 @@
 dotfile backups
 ===============
 
-this repository hosts a small but growing
-collection of the dotfiles i'm currently 
-using on my ubuntu server. they're tedious
-to configure so having a central location
-to store back-up copies is a good idea --
-and who knows, maybe someone will find some
-useful information for themselves.
+this repository hosts back-up copies
+of my dotfiles.
+
+they're tedious to configure so having
+a central location to store them is
+convenient -- and hopefully, these will
+help others who are seeking help in configuring
+their own.
 
 *feel free to use these configs yourself*
 
