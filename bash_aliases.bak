@@ -1,4 +1,73 @@
-alias l='ls; pwd'          # short list and print working dir
-alias ll='ls -a -l; pwd'   # detailed list and print working dir
-alias rmi='rm -i'          # safe delete - confirm before deletion
+###############################
+# Bash aliases for dev users. #
+###############################
+
+# print the alias file (this file)
+alias pa='cat /home/dev-master/bash_aliases'
+
+# edit the alias file (this file)
+alias edital='vim /home/dev-master/bash_aliases'
+
+# source (save/update) the .profile to update this file
+alias srcprofile='source ~/.profile'
+
+# various ls formats
+alias l="ls -al; pwd"
+
+# start redis master daemon
+alias startRedisMasterDaemon='sudo /etc/init.d/redis_6379 start'
+alias srmd='startRedisMasterDaemon'
+
+# quick cd to GO repo
+alias goWorkSpace='cd ~/work/src/github.com/msawangwan/'
+alias gws='goWorkSpace'
+
+# print current iptables and rules, show verbose output
+alias ipTablesList='sudo iptables -L -v --line-numbers'
+alias iptl='ipTablesList'
+
+# print iptables as commands
+alias ipPrintCommands='sudo iptables -S'
+alias ippc='ipPrintCommands'
+
+# save any iptables changes to persist through server reboot
+alias ipTablesSaveChanges='sudo invoke-rc.d iptables-persistent save'
+alias iptsc='ipTablesSaveChanges'
+
+# shutdown the main server
+alias serverShutdown='sudo shutdown -P now'
+alias serversd='serverShutdown'
+
+# ls scrolling mode
+alias lss='ls -l | less'
+
+# list size of each file/dir in current dir
+alias listdirs='du -sh *'
+alias lds='listdirs'
+
+# print formatted date/time
 alias today='date +"%A, %B %-d, %Y"'
+
+# print to-do file
+alias todo='cat /home/dev-master/task-list.md'
+
+# edit to-do file
+alias etodo='vim /home/dev-master/task-list.md'
+
+# alias for 'git'
+alias g='git'
+alias gstats='g status'
+alias gaddall='g add --all'
+alias gcommit='g commit'
+
+# dir shortcuts
+alias gomaster='cd /home/dev-master/'
+alias gowww='cd /home/dev-www/src/www'
+alias gonode='cd /home/dev-node/'
+
+# apply rot13
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+
+# get info on package
+# TODO: fix, currently not working
+#alias chpack='checkPack() { sudo apt-cache show $1; }; checkPack()'

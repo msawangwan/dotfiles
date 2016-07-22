@@ -7,7 +7,7 @@
 " and plug#end - the path is passed into begin
 
 call plug#begin('~/.vim/bundle/')    " start plugin section  here ...
-Plug 'scrooloose/nerdtree'           " nerdtree
+Plug 'scrooloose/nerdtree', has('nvim') ? {} : { 'on':[]} " nerdtree (disabled)
 Plug 'Valloric/YouCompleteMe',       " youcompleteme
 Plug 'pangloss/vim-javascript'       " vim-javascript
 Plug 'moll/vim-node'                 " vim-node
@@ -21,12 +21,14 @@ call plug#end()                      " ... end plugin section  here
 " ----------------------------------------------------
 
 set t_Co=256                   " enable 256 colors
-colorscheme skittles_berry     " color scheme
+"colorscheme womprat            " color scheme
+colorscheme molokai
 syntax enable                  " enable syntax highlighting
 set encoding=utf-8             " set encoding
 set fileencoding=utf-8         " filetype encoding
 set number                     " show line numbers
 set ruler                      " show ruler
+set spelllang=en
 set wildmenu                   " enable wildmenu (autocomplete cmds)
 set wildmode=list:longest,full " wildmenu settings
 set ch=2                       " cmdheight
@@ -41,6 +43,7 @@ set noexpandtab                " expand tabs into spaces
 set shiftwidth=4               " when using the >> or << commands, shift lines by 4 spaces
 set shiftround                 " round indent to multiple of 'shiftwidth'
 set cursorline                 " show a visual line under the cursor's current line
+set nowrap                     " don't wrap lines
 set scrolloff=5                " always show at least 5 lines
 set showmatch                  " show the opening/closing pairs of [] () {}
 set foldmethod=indent          " enable folding
@@ -48,14 +51,23 @@ set foldlevel=99               " readup on this setting
 set hlsearch                   " highlight all words matched by search
 set incsearch                  " search as word is typed
 set ignorecase                 " ignore case during search
+set nopaste
 let python_highlight_all=1     " enable all Python syntax highlighting features
 
 " shows '.' char for whitespace and '|...' for tabs
 set list listchars=trail:.,tab:\|.
 " set colors for specialchars and statusline
-highlight SpecialKey ctermfg=white ctermbg=grey
+highlight SpecialKey ctermfg=DarkGrey ctermbg=black
 highlight statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-
+" colors for cursor when changing modes - these don't work in shell?
+highlight Cursor guifg=white guibg=Red
+highlight iCursor guifg=White guibg=Black
+" show bad whitespace (for python but works for all filetypes)
+highlight BadWhitespace ctermbg=red guibg=red
+" mark bad indents (for python)
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" mark trailing whitespace (for python, c)
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "
 " -------------------------------------------------
 "                   key-bindings
@@ -71,17 +83,18 @@ nnoremap <space> za
 "                language specific
 " --------------------------------------------------
 
+"filetype indent on
+
+au BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+au BufRead,BufNewFile *.json set filetype=json
+autocmd Filetype txt,markdown setlocal ts=2 sts=2 sw=2 tw=200 expandtab
 autocmd Filetype sh,bash setlocal ts=4 sts=4 sw=4 tw=120 noexpandtab
-autocmd Filetype html setlocal ts=2 sts=2 sw=2 tw=100 noexpandtab
-autocmd Filetype python,go,cpp,java setlocal ts=4 sts=4 sw=4 tw=80 noexpandtab
-autocmd Filetype javascript,css,json setlocal ts=2 sts=2 sw=2 tw=80 noexpandtab
+autocmd Filetype html,css,json setlocal ts=2 sts=2 sw=2 tw=120 expandtab
+autocmd Filetype python setlocal ts=4 sts=4 sw=4 tw=80 expandtab
+autocmd Filetype c,cpp,javascript setlocal ts=2 sts=2 sw=2 tw=80 expandtab
+autocmd Filetype go,java setlocal ts=4 sts=4 sw=4 tw=80 noexpandtab
 
-"
-" --------------------------------------------------
-"                 vim-javascript
-" --------------------------------------------------
-
-let javascript_enable_domhtmlcss=0                    " enable html/css syntax highlighting
+autocmd Filetype markdown setlocal spell "spell checker on for markdown files
 
 "
 " --------------------------------------------------
@@ -96,9 +109,9 @@ let g:ycm_min_num_of_chars_for_completion=1           " number of characters bef
 "                   nerdtree
 " --------------------------------------------------
 
-autocmd vimenter * NERDTree                           " doesn't open by default unless this is set?
-let g:NERDTreeWinSize=18                              " resize file browser width
-let g:NERDTreeDirArrows=0                             " required when using putty: allows nav of subdirs
+"autocmd vimenter * NERDTree                           " doesn't open by default unless this is set?
+"let g:NERDTreeWinSize=14                              " resize file browser width
+"let g:NERDTreeDirArrows=0                             " required when using putty: allows nav of subdirs
 
 "
 " --------------------------------------------------
